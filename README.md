@@ -1,2 +1,2 @@
 # FdF
-proyecto gradico en C
+proyecto grafico en C
