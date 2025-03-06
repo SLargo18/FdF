@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:30:29 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/06 04:07:44 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/06 04:43:30 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,32 @@ int count_col(char *line)
 	return (col);
 }
 
-t_map	*parse(char *txt, int row, int col)
+t_map	*parse(char *file)
 {
-	char	*line;
 	int		fd;
+	char	*line;
 	t_map	*map;
 
-	fd = open(txt, O_RDONLY);
-	map = malloc(sizeof(t_map));
-	if (fd < 0 || !map)
-		return (free (map), NULL);
-	map->row = count_lines(fd);
-	close(fd);
-
-	fd = open(txt, O_RDONLY);
-	line = get_next_line(fd);
-	if (!line)
-	{
-		return (free_map(map), NULL);
-		close(fd);
-	}
-	row = count_row(line);
-	free (line);
-	close(fd);
-
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (free (map), NULL);
-	init_map(map, row, col);
+	map->row = count_lines(fd);
+	close(fd);
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (free(map), NULL);
+	line = get_next_line(fd);
+	map->col = count_row(line);
+	free(line);
+	close(fd);
+	init_map(map, map->row, map->col);
 	if (!map->grid)
 		return (free_map(map), NULL);
-	fill_points(txt, map);
+	fill_points(file, map);
 	return (map);
 }
+
 
