@@ -6,34 +6,11 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:30:29 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/06 04:43:30 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:25:06 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int count_col(char *line)
-{
-	int i;
-	int col;
-	int len;
-
-	i = 0;
-	col = 0;
-	len = 0;
-	while (line[i])
-	{
-		if (line[i] != ' ' && !len)
-		{
-			len = 1;
-			col++;
-		}
-		else if (line[i] == ' ')
-			len = 0;
-		i++;
-	}
-	return (col);
-}
 
 t_map	*parse(char *file)
 {
@@ -62,5 +39,3 @@ t_map	*parse(char *file)
 	fill_points(file, map);
 	return (map);
 }
-
-

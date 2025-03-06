@@ -6,11 +6,34 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:42:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/05 21:55:03 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:23:39 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	count_row(char *line)
+{
+	int	count;
+	int	i;
+	int	wrd;
+
+	count = 0;
+	i = 0;
+	wrd = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && !wrd)
+		{
+			wrd = 1;
+			count++;
+		}
+		else if (line[i] == ' ')
+			wrd = 0;
+		i++;
+	}
+	return (count);
+}
 
 int	count_lines(int fd)
 {

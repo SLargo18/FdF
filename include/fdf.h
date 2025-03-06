@@ -1,33 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 21:25:25 by slargo-b          #+#    #+#             */
+/*   Updated: 2025/03/06 15:24:41 by slargo-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
-#define FDF_H
+# define FDF_H
 
 # include <mlx.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <math.h>
 
-typedef struct point {
-    int x;
-    int y;
-    int z;
-} t_point;
+typedef struct point
+{
+	int	x;
+	int	y;
+	int	z;
+}	t_point;
 
-typedef struct map {
-    int col;
-    int line;
-    puntos **grid;
-} t_map;
+typedef struct map
+{
+	int		col;
+	int		row;
+	t_point	**grid;
+}	t_map;
 
-typedef struct program {
-    void *mlx;
-    void *win;
-    t_map *map;
-    void *img;
-    float scale;
-    int shift_x;
-    int shift_y;
-    float angle;
-} t_program;
+typedef struct fdf
+{
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+	void	*img;
+	float	scale;
+	int		shift_x;
+	int		shift_y;
+	float	angle;
+}	t_fdf;
 
+int		count_lines(int fd);
+int		count_row(char *line);
 #endif
