@@ -10,3 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+void draw_map(t_fdf *fdf)
+{
+    int x;
+    int y;
+    
+    y = 0;
+    x = 0;
+    while (x < fdf->map->row)
+    {
+        while (x < fdf->map->col)
+        {
+            if (x < fdf->map>col -1)
+            draw_line(fdf, fdf->map->grid[y][x])
+        }
+    }
+}

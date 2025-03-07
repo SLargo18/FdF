@@ -55,7 +55,7 @@ static char	*get_next_word(const char **s, char c)
 	return (word);
 }
 
-static void	free_split(char **result, size_t i)
+void	free_split(char **result, size_t i)
 {
 	while (i > 0)
 	{
