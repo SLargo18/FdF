@@ -6,11 +6,11 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:42:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/06 15:23:39 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/08 05:47:10 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 int	count_row(char *line)
 {

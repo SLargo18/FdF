@@ -6,11 +6,11 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:15:56 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/06 15:28:03 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/08 04:50:25 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 static size_t	count_words(const char *s, char c)
 {

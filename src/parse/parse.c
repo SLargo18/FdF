@@ -6,16 +6,14 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:30:29 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/06 15:25:06 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/08 05:44:30 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
-t_map	*parse(char *file)
+t_map	*parse(char *file, int fd, char *line)
 {
-	int		fd;
-	char	*line;
 	t_map	*map;
 
 	fd = open(file, O_RDONLY);

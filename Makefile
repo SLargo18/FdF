@@ -1,7 +1,16 @@
 NAME = fdf
 
-SRC = src/main.c src/parse.c src/draw.c src/events.c
-UTILS = utils/get_next_line.c utils/get_next_line_utils.c utils/utils.c
+SRC = src/draw/algorithm.c \
+	src/draw/draw.c \
+	src/draw/put_pixel.c \
+	src/include/fdf.h \
+	src/parse/fill_points.c \
+	src/parse/init_map.c \
+	src/parse/parse.c
+
+UTILS = src/utils/get_next_line.c \
+	  src/utils/get_next_line_utils.c \
+	  src/utils/utils.c
 
 OBJ = $(SRC:.c=.o) $(UTILS:.c=.o)
 

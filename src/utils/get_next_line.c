@@ -6,11 +6,11 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:14:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/05 21:56:52 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/08 05:47:06 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 char	*ft_laquequiera(char *save, char *buffer)
 {
