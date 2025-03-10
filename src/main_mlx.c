@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:05:20 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/08 06:10:43 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:28:21 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,43 @@ int	main(void)
 	return (0);
 }
  */
+#include "include/fdf.h"
+#include <stdio.h>
+
+void	free_map(t_map *map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	if (map->grid)
+	{
+		i = 0;
+		while (i < map->row)
+		{
+			free(map->grid[i]);
+			i++;
+		}
+		free(map->grid);
+	}
+	free(map);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_map	*map;
+
+	if (argc != 2)
+	{
+		write(1, "Error\n", 6);
+		return (1);
+	}
+	map = parse(argv[1], 0, NULL);
+	if (!map)
+	{
+		write(1, "Error\n", 6);
+		return (1);
+	}
+	free_map(map);
+	return (0);
+}

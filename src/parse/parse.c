@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:30:29 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/08 05:44:30 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:59:05 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_map	*parse(char *file, int fd, char *line)
 	map->col = count_row(line);
 	free(line);
 	close(fd);
-	printf("row cuantas ?": %d\n", map->row);
-	printf("col ? cuantas": %d\n", map->col);
+	printf("row cuantas ?: %d\n", map->row);
+	printf("col ? cuantas: %d\n", map->col);
 	init_map(map, map->row, map->col);
 	if (!map->grid)
 		return (free_map(map), NULL);

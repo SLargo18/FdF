@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:15:56 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/08 04:50:25 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:08:07 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,29 @@ static size_t	count_words(const char *s, char c)
 	return (count);
 }
 
+static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	unsigned int	a;
+	unsigned int	i;
+
+	a = 0;
+	i = 0;
+	while (src[a] != '\0')
+	{
+		a++;
+	}
+	if (size > 0)
+	{
+		while (i < (size - 1) && (src[i] != '\0'))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (a);
+}
+
 static char	*get_next_word(const char **s, char c)
 {
 	const char	*start;
@@ -48,6 +71,8 @@ static char	*get_next_word(const char **s, char c)
 		len++;
 		(*s)++;
 	}
+	if (len == 0)
+		return (NULL);
 	word = malloc(len + 1);
 	if (!word)
 		return (NULL);
@@ -59,8 +84,7 @@ void	free_split(char **result, size_t i)
 {
 	while (i > 0)
 	{
-		i--;
-		free(result[i]);
+		free(result[--i]);
 	}
 	free(result);
 }
@@ -74,6 +98,8 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_count = count_words(s, c);
+	if (word_count == 0)
+		return (ft_calloc(1, sizeof(char *)));
 	result = malloc((word_count + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
@@ -82,10 +108,7 @@ char	**ft_split(char const *s, char c)
 	{
 		result[i] = get_next_word(&s, c);
 		if (!result[i])
-		{
-			free_split(result, i);
-			return (NULL);
-		}
+			return ((free_split(result, i), (NULL)));
 		i++;
 	}
 	result[i] = NULL;

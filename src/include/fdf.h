@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/08 06:05:35 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:15:33 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
 # include <fcntl.h>
 # include <math.h>
 # include "../minilibx-linux/mlx.h"
+# include <stdio.h>
 
+# define WW 1920
+# define WH 1080
 //INCLUIR WINDOW y si quisiera el COLOR
 
 
@@ -52,24 +55,6 @@ typedef struct fdf
 	int		shift_y;
 	float	angle;
 }	t_fdf;
-
-typedef struct s_img
-{
-	int				size_line;
-	int				bpp;
-	int				width;
-	int				height;
-	int				type;
-	int				format;
-	char			*data;
-}				t_img;
-
-typedef struct s_xvar
-{
-	int	depth;
-	int	bits_per_pixel;
-	int	scanline_pad;
-}	t_xvar;
 
 int		count_lines(int fd);
 int		count_row(char *line);

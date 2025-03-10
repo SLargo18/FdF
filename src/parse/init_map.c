@@ -21,19 +21,21 @@ void	init_map(t_map *map, int row, int col)
 
 	i = 0;
 	map->row = row;
+	printf ("row: %d\n", map->row);
 	map->col = col;
-	map->grid = malloc(sizeof(t_point *) * row); // puntero a cada fila de cada columna
+	map->grid = malloc(sizeof(t_point *) * row);
 	if (!map->grid)
 		return ;
 	while (i < row)
 	{
-		map->grid[i] = malloc(sizeof(t_point) * col); // cada x,y,z es un t_point
+		map->grid[i] = malloc(sizeof(t_point) * col);
 		if (!map->grid[i])
 		{
 			while (--i >= 0)
 				free(map->grid[i]);
-			free(map->grid); 
-			map->grid = NULL; // return ; ?
+			free(map->grid);
+			map->grid = NULL;
+			return ;
 		}
 		i++;
 	}

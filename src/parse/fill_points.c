@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+#include <stdio.h>
 
 void	fill_points(char *txt, t_map *map)
 {
@@ -25,27 +26,30 @@ void	fill_points(char *txt, t_map *map)
 	fd = open(txt, O_RDONLY);
 	if (fd < 0)
 		return ;
-	while (row < map->row) // line = gnl(fd) &&
+	while (row < map->row)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		printf("row cuantas2 ?: %d\n", map->row);
 		split = ft_split(line, ' ');
+		printf("entra?: %p\n", (void *)split);
 		free(line);
+		col = 0;
 		while (col < map->col && split[col])
 		{
+			printf("entra?: %d\n", map->row);
 			map->grid[row][col].x = col;
 			map->grid[row][col].y = row;
 			map->grid[row][col].z = ft_atoi(split[col]);
 			map->grid[row][col].color = 0xFFFFFF;
 
-				printf("punto x": %d\n", row, col, map->grid[row][col].x);
-				printf("punto y": %d\n", row, col, map->grid[row][col].y);
-				printf("punto z": %d\n", row, col, map->grid[row][col].z);
+/* 			printf("punto x: %d\n", map->grid[row][col].x);
+			printf("punto y: %d\n", map->grid[row][col].y);
+			printf("punto z: %d\n", map->grid[row][col].z); */
 			col++;
 		}
 		free_split(split, col);
 		row++;
 	}
-	close(fd);
 }
