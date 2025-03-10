@@ -50,14 +50,15 @@ int	main(int argc, char *argv[])
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 	{
-		free_map(map);
+		free_map(map); // unir
 		return (1);
 	}
 	fdf->map = map;
 	fdf->mlx = mlx_init();
-	fdf->win = mlx_new_window(fdf->mlx, 500, 500, "Mapita :3");
+	fdf->win = mlx_new_window(fdf->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Mapita :3");
 	draw_map(fdf);
-	free_map(map);
+	//eventos! (fdf);
 	mlx_loop(fdf);
+	free(map);
 	return (0);
 }

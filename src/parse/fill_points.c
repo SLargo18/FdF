@@ -25,7 +25,7 @@ void	fill_points(char *txt, t_map *map)
 	fd = open(txt, O_RDONLY);
 	if (fd < 0)
 		return ;
-	while (row < map->row)
+	while (row < map->row) // line = gnl(fd) &&
 	{
 		line = get_next_line(fd);
 		if (!line)
@@ -38,6 +38,10 @@ void	fill_points(char *txt, t_map *map)
 			map->grid[row][col].y = row;
 			map->grid[row][col].z = ft_atoi(split[col]);
 			map->grid[row][col].color = 0xFFFFFF;
+
+				printf("punto x": %d\n", row, col, map->grid[row][col].x);
+				printf("punto y": %d\n", row, col, map->grid[row][col].y);
+				printf("punto z": %d\n", row, col, map->grid[row][col].z);
 			col++;
 		}
 		free_split(split, col);

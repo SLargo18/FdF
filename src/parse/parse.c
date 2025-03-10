@@ -31,6 +31,8 @@ t_map	*parse(char *file, int fd, char *line)
 	map->col = count_row(line);
 	free(line);
 	close(fd);
+	printf("row cuantas ?": %d\n", map->row);
+	printf("col ? cuantas": %d\n", map->col);
 	init_map(map, map->row, map->col);
 	if (!map->grid)
 		return (free_map(map), NULL);

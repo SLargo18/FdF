@@ -23,6 +23,8 @@
 # include <math.h>
 # include "../minilibx-linux/mlx.h"
 
+//INCLUIR WINDOW y si quisiera el COLOR
+
 
 typedef struct point
 {

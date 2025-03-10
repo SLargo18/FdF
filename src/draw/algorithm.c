@@ -26,7 +26,7 @@ void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 	int	sx = 1;
 	int	sy = 1;
 	int	err = dx - dy;
-	int e2;
+	int e2 = 2 * err;
 
 	if (p1.x > p2.x)
 		sx = -1;
@@ -36,7 +36,6 @@ void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 	while (p1.x != p2.x || p1.y != p2.y)
 	{
 		put_pixel(fdf->img, p1.x, p1.y, p1.color);
-		e2 = 2 * err;
 		if (e2 > -dy)
 		{
 			err -= dy;
@@ -48,4 +47,4 @@ void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 			p1.y += sy;
 		}
 	}
-}
+} /*esto lo saque de internet, para hacer el mio propio*/

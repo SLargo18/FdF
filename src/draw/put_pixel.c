@@ -22,4 +22,4 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 	img = fdf->img;
 	dst = img->data + (y * img->size_line + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
-}
+} // todo esto debe estar malo. 

@@ -22,18 +22,18 @@ void	init_map(t_map *map, int row, int col)
 	i = 0;
 	map->row = row;
 	map->col = col;
-	map->grid = malloc(sizeof(t_point *) * row);
+	map->grid = malloc(sizeof(t_point *) * row); // puntero a cada fila de cada columna
 	if (!map->grid)
 		return ;
 	while (i < row)
 	{
-		map->grid[i] = malloc(sizeof(t_point) * col);
+		map->grid[i] = malloc(sizeof(t_point) * col); // cada x,y,z es un t_point
 		if (!map->grid[i])
 		{
 			while (--i >= 0)
 				free(map->grid[i]);
 			free(map->grid); 
-			map->grid = NULL;
+			map->grid = NULL; // return ; ?
 		}
 		i++;
 	}
