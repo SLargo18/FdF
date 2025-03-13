@@ -13,8 +13,9 @@
 #include "../include/fdf.h"
 static  void apply_scale(t_point *p, t_fdf *fdf)
 {
-    p->x += fdf->shift_x + WW / 2;
-    p->y += fdf->shift_y + WH / 3;
+    p->x *= fdf->scale;
+    p->y *= fdf->scale;
+    p->z *= fdf->sclae / 2;
 }
 
 static  t_point project_point(t_point p, t_fdf *fdf)
@@ -23,6 +24,7 @@ static  t_point project_point(t_point p, t_fdf *fdf)
 
     projected = p;
     apply_scale(&projected,fdf);
+    a
 }
 static  void    connect_point(t_fdf *fdf)
 {
