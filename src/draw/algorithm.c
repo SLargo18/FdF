@@ -38,6 +38,7 @@ static int get_color(t_point p1, t_point p2, float ratio)
 {
     int color;
 
+    ratio = 0;
     if (p1.color == p2.color)
         return (p1.color);
     if (ratio < 0)

@@ -12,3 +12,39 @@
 
 #include "../include/fdf.h"
 
+static  void    connect_point(t_fdf *fdf)
+{
+    int i;
+    int j;
+    t_point p1;
+    t_point p2;
+
+    i = 0;
+    j = 0;
+    while (i < fdf->map->row)
+    {
+        while (j < fdf->map->col)
+        {
+            if (j < fdf->map->col - 1)
+            {
+                
+            }
+        }
+    }
+}
+void draw_map(t_fdf *fdf)
+{
+    if (fdf->img)
+    {
+        mlx_destroy_image(fdf->mlx, fdf->img);
+        fdf->img = NULL;
+    }
+    fdf-img = mlx_new_image(fdf->mlx, WW, WH);}
+    if (!fdf->img)
+        return ;
+    if (!fdf->scale)
+        fdf->scale = 30;
+    if(!fdf->angle)
+        fdf->angle = 0.8;
+    connect_point(fdf);
+}
