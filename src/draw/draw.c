@@ -11,7 +11,19 @@
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+static  void apply_scale(t_point *p, t_fdf *fdf)
+{
+    p->x += fdf->shift_x + WW / 2;
+    p->y += fdf->shift_y + WH / 3;
+}
 
+static  t_point project_point(t_point p, t_fdf *fdf)
+{
+    t_point projected;
+
+    projected = p;
+    apply_scale(&projected,fdf);
+}
 static  void    connect_point(t_fdf *fdf)
 {
     int i;
@@ -27,9 +39,13 @@ static  void    connect_point(t_fdf *fdf)
         {
             if (j < fdf->map->col - 1)
             {
-                
+                p1 = project_point(fdf->map->grid[i][j], fdf);
+                p2 = project_point(fdf->map->grid[i][j + 1], fdf);
+                draw_line(fdf, p1, p1);
             }
+            j++;
         }
+        i++;
     }
 }
 void draw_map(t_fdf *fdf)
