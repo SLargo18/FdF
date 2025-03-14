@@ -22,7 +22,7 @@ static int abs_value(int num)
 static void set_params(t_point p1, t_point p2, int *params)
 {
     params[0] = abs_value(p2.x - p1.x);
-    params[1] = abs_value(p2.y - p2.x);
+    params[1] = abs_value(p2.y - p1.y);
     if (p1.x < p2.x)
         params[2] = 1;
     else 
@@ -74,8 +74,8 @@ void draw_line(t_fdf *fdf, t_point p1, t_point p2)
         }
         if (e2 < params[0])
         {
-        params[4] -= params[0];
-        current.x += params[3];
+        params[4] += params[0];
+        current.y += params[3];
         }
         step++;
     }

@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:51:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 06:19:49 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 06:36:57 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,30 @@ static t_point	project_point(t_point p, t_fdf *fdf)
 	apply_shift(&projected, fdf);
 	return (projected);
 }
+
 static void	connect_point(t_fdf *fdf)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_point	p1;
 	t_point	p2;
 
 	i = 0;
-	j = 0;
 	while (i < fdf->map->row)
 	{
+		j = 0;
 		while (j < fdf->map->col)
 		{
 			if (j < fdf->map->col - 1)
 			{
 				p1 = project_point(fdf->map->grid[i][j], fdf);
 				p2 = project_point(fdf->map->grid[i][j + 1], fdf);
+				draw_line(fdf, p1, p2);
+			}
+			if (i < fdf->map->row - 1)
+			{
+				p1 = project_point(fdf->map->grid[i][j], fdf);
+				p2 = project_point(fdf->map->grid[i + 1][j], fdf);
 				draw_line(fdf, p1, p2);
 			}
 			j++;

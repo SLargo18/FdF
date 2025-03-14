@@ -43,10 +43,6 @@ void	fill_points(char *txt, t_map *map)
 			map->grid[row][col].y = row;
 			map->grid[row][col].z = ft_atoi(split[col]);
 			map->grid[row][col].color = 0xFFFFFF;
-
-/* 			printf("punto x: %d\n", map->grid[row][col].x);
-			printf("punto y: %d\n", map->grid[row][col].y);
-			printf("punto z: %d\n", map->grid[row][col].z); */
 			col++;
 		}
 		free_split(split, col);

@@ -21,7 +21,6 @@ void	init_map(t_map *map, int row, int col)
 
 	i = 0;
 	map->row = row;
-	printf ("row: %d\n", map->row);
 	map->col = col;
 	map->grid = malloc(sizeof(t_point *) * row);
 	if (!map->grid)
