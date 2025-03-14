@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/10 15:16:10 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 05:21:58 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,38 @@ void	free_map(t_map *map)
 		free(map->grid);
 	}
 	free(map);
+}
+
+static int	key_hook(int keycode, t_fdf *fdf)
+{
+	if (keycode == 65307)  // ESC key
+		exit(0);
+	else if (keycode == 65362)  // Up arrow
+		fdf->shift_y -= 10;
+	else if (keycode == 65364)  // Down arrow
+		fdf->shift_y += 10;
+	else if (keycode == 65361)  // Left arrow
+		fdf->shift_x -= 10;
+	else if (keycode == 65363)  // Right arrow
+		fdf->shift_x += 10;
+	else if (keycode == 61)     // + key
+		fdf->scale += 2;
+	else if (keycode == 45)     // - key
+		fdf->scale -= 2;
+	else if (keycode == 113)    // Q key
+		fdf->angle += 0.1;
+	else if (keycode == 101)    // E key
+		fdf->angle -= 0.1;
+	draw_map(fdf);
+	return (0);
+}
+
+static	int close_win(t_fdf *fdf)
+{
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	free_map(fdf->map);
+	free(fdf);
+	exit(0);
 }
 
 int	main(int argc, char *argv[])
@@ -59,7 +91,8 @@ int	main(int argc, char *argv[])
 	fdf->shift_y = 0;
 	fdf->angle = 0.8;
 	draw_map(fdf);
-	// falta key hook, y el loop del key
+	mlx_key_hook(fdf->win, key_hook, fdf);
+	mlx_hook(fdf->win, 17, 0, close_win, fdf);
 	mlx_loop(fdf->mlx);
 	free(map);
 	return (0);

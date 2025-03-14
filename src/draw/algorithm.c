@@ -42,38 +42,30 @@ static int get_color(t_point p1, t_point p2, float ratio)
     if (p1.color == p2.color)
         return (p1.color);
     if (ratio < 0)
-        rario = 0;
+        ratio = 0;
     if (ratio > 1)
         ratio = 1;
     color = p1.color + ((p2.color - p1.color) * ratio);
     return (color);
 }
 
-static void cuerrent(t_point p1, t_pointp2)
-{
-    t_point now;
-    
-    set_params(p1, p2, params);
-    now = p1;
-
-}
-
 void draw_line(t_fdf *fdf, t_point p1, t_point p2) 
 {
     int params [5];
     int e2;
-    t_point now;
+    t_point current;
     float   distance;
     float   step;
 
     set_params(p1, p2, params);
-    now = p1;
+    current = p1;
     step = 0;
-    distance = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1y,2));
-    while (now.x != p2.x || now.y != p2.y)
+    distance = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y,2));
+    while (current.x != p2.x || current.y != p2.y)
     {
         if (current.x >= 0 && current.x < WW && current.y >= 0 && current.y < WH)
-            put_pixel(fdf, current.x, current.y), get_color(p1, p2, step / distance));
+            put_pixel(fdf, current.x, current.y,
+                (get_color(p1, p2, step / distance)));
         e2 = 2 * params[4];
         if (e2 > -params[1])
         {

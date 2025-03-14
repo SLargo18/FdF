@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:05:20 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/10 15:28:21 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 05:53:43 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(void)
 	mlx_loop(mlx);
 	return (0);
 }
- */
+
 #include "include/fdf.h"
 #include <stdio.h>
 
@@ -75,3 +75,4 @@ int	main(int argc, char *argv[])
 	free_map(map);
 	return (0);
 }
+ */
