@@ -11,6 +11,25 @@
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+static  void apply_shift(t_point *p, t_fdf *fdf)
+{
+    p->x += fdf->shift_x + WW / ;
+    p->y += fdf->shift_y + WH / ;
+}
+
+static  void apply_isometric (t_point *p, t_fdf *fdf)
+{
+    int x,
+    int	y;
+
+    x = p->x;
+    y = p->y;
+    p->x = (x - y) * cos(fdf->angle);
+    p->y = (x + y) * sin(fdf->angle) - p->z;
+
+} 
+
 static  void apply_scale(t_point *p, t_fdf *fdf)
 {
     p->x *= fdf->scale;
@@ -23,8 +42,10 @@ static  t_point project_point(t_point p, t_fdf *fdf)
     t_point projected;
 
     projected = p;
-    apply_scale(&projected,fdf);
-    a
+    apply_scale(&projected, fdf);
+    apply_isometric(&projected, fdf);
+    apply_shift(&projected, fdf);
+    return (projected);
 }
 static  void    connect_point(t_fdf *fdf)
 {
@@ -65,4 +86,5 @@ void draw_map(t_fdf *fdf)
     if(!fdf->angle)
         fdf->angle = 0.8;
     connect_point(fdf);
+    mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
 }

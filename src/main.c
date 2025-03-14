@@ -53,7 +53,13 @@ int	main(int argc, char *argv[])
 	fdf->map = map;
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WW, WH, "Mapita :3");
+	fdf->img = NULL;
+	fdf->scale = 30;
+	fdf->shift_x = 0;
+	fdf->shift_y = 0;
+	fdf->angle = 0.8;
 	draw_map(fdf);
+	// falta key hook, y el loop del key
 	mlx_loop(fdf->mlx);
 	free(map);
 	return (0);
