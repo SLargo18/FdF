@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 05:21:58 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 08:11:45 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	free_map(t_map *map)
 	}
 	free(map);
 }
+/* static void	init_fdf(t_fdf *fdf)
+{
+	fdf->scale = 30;
+	fdf->shift_x = 0;
+	fdf->shift_y = 0;
+	fdf->angle = 0.8;
+	fdf->z_scale = 1;
+} */
 
 static int	key_hook(int keycode, t_fdf *fdf)
 {
@@ -43,10 +51,6 @@ static int	key_hook(int keycode, t_fdf *fdf)
 		fdf->shift_x -= 10;
 	else if (keycode == 65363)  // Right arrow
 		fdf->shift_x += 10;
-	else if (keycode == 61)     // + key
-		fdf->scale += 2;
-	else if (keycode == 45)     // - key
-		fdf->scale -= 2;
 	else if (keycode == 113)    // Q key
 		fdf->angle += 0.1;
 	else if (keycode == 101)    // E key
@@ -55,7 +59,22 @@ static int	key_hook(int keycode, t_fdf *fdf)
 	return (0);
 }
 
-static	int close_win(t_fdf *fdf)
+static int	mouse_hook(int button, int x, int y, t_fdf *fdf)
+{
+	(void)x;
+	(void)y;
+	if (button == 4)  // Scroll up
+		fdf->scale += (fdf->scale * 0.1);
+	else if (button == 5)  // Scroll down
+		fdf->scale -= (fdf->scale * 0.1);
+	if (fdf->scale < 1)
+		fdf->scale = 1;
+	mlx_clear_window(fdf->mlx, fdf->win);
+	draw_map(fdf);
+	return (0);
+}
+
+static int	close_win(t_fdf *fdf)
 {
 	mlx_destroy_window(fdf->mlx, fdf->win);
 	free_map(fdf->map);
@@ -86,13 +105,14 @@ int	main(int argc, char *argv[])
 	fdf->mlx = mlx_init();
 	fdf->win = mlx_new_window(fdf->mlx, WW, WH, "Mapita :3");
 	fdf->img = NULL;
-	fdf->scale = 30;
+	fdf->scale = 10;
 	fdf->shift_x = 0;
 	fdf->shift_y = 0;
 	fdf->angle = 0.8;
 	draw_map(fdf);
 	mlx_key_hook(fdf->win, key_hook, fdf);
 	mlx_hook(fdf->win, 17, 0, close_win, fdf);
+	mlx_mouse_hook(fdf->win, mouse_hook, fdf);
 	mlx_loop(fdf->mlx);
 	free(map);
 	return (0);

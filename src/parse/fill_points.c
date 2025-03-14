@@ -31,18 +31,15 @@ void	fill_points(char *txt, t_map *map)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		printf("row cuantas2 ?: %d\n", map->row);
 		split = ft_split(line, ' ');
-		printf("entra?: %p\n", (void *)split);
 		free(line);
 		col = 0;
 		while (col < map->col && split[col])
 		{
-			printf("entra?: %d\n", map->row);
 			map->grid[row][col].x = col;
 			map->grid[row][col].y = row;
 			map->grid[row][col].z = ft_atoi(split[col]);
-			map->grid[row][col].color = 0xFFFFFF;
+			map->grid[row][col].color = 0xAAFFFF;
 			col++;
 		}
 		free_split(split, col);

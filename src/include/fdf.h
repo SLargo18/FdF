@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 06:40:12 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 08:52:07 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
 # include "../../minilibx-linux/mlx.h"
 # include <stdio.h>
 
-# define WW 1920
-# define WH 1080
-//INCLUIR WINDOW y si quisiera el COLOR
+# define WW 500
+# define WH 500
 
 
 typedef struct point
@@ -51,6 +50,7 @@ typedef struct fdf
 	t_map	*map;
 	void	*img;
 	float	scale;
+	float	z_scale;
 	int		shift_x;
 	int		shift_y;
 	float	angle;
@@ -78,5 +78,4 @@ t_map	*parse(char *file, int fd, char *line);
 void	draw_map(t_fdf *fdf);
 void	put_pixel(t_fdf *fdf, int x, int y, int color);
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2);
-
 #endif

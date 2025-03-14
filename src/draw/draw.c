@@ -6,36 +6,35 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:51:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 06:58:02 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 08:47:44 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static	void apply_shift(t_point *p, t_fdf *fdf)
+static void	apply_shift(t_point *p, t_fdf *fdf)
 {
 	p->x += fdf->shift_x + WW / 2;
 	p->y += fdf->shift_y + WH / 3;
 }
 
-static void	apply_isometric (t_point *p, t_fdf *fdf)
+static void	apply_isometric(t_point *p, t_fdf *fdf)
 {
 	int	x;
 	int	y;
 
-	fdf->angle = 0.8;
 	x = p->x;
 	y = p->y;
 	p->x = (x - y) * cos(fdf->angle);
 	p->y = (x + y) * sin(fdf->angle) - p->z;
 
-} 
+}
 
 static void	apply_scale(t_point *p, t_fdf *fdf)
 {
 	p->x *= fdf->scale;
 	p->y *= fdf->scale;
-	p->z *= fdf->scale / 2;
+	p->z -= fdf->scale * fdf->z_scale;
 }
 
 static t_point	project_point(t_point p, t_fdf *fdf)
@@ -80,6 +79,16 @@ static void	connect_point(t_fdf *fdf)
 	}
 }
 
+void	display_instructions(t_fdf *fdf)
+{
+	mlx_string_put(fdf->mlx, fdf->win, 10, 10, 0xFFFFFF, "Flechas: Mover");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 30, 0xFFFFFF, "raton: Zoom");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 50, 0xFFFFFF, "Q/E: Rotar");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 70, 0xFFFFFF, "Z/X: Ajustar altura");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0xFFFFFF, "R: Reiniciar");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 110, 0xFFFFFF, "ESC: Salir");
+}
+
 void	draw_map(t_fdf *fdf)
 {
 	if (fdf->img)
@@ -91,9 +100,12 @@ void	draw_map(t_fdf *fdf)
 	if (!fdf->img)
 		return ;
 	if (!fdf->scale)
-		fdf->scale = 30;
+		fdf->scale = 10;
 	if (!fdf->angle)
 		fdf->angle = 0.8;
+	if ((!fdf->z_scale) == 0)
+		fdf->z_scale = 1;
 	connect_point(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
+	display_instructions(fdf);
 }
