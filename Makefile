@@ -3,7 +3,6 @@ NAME = fdf
 SRC = src/draw/algorithm.c \
 	src/draw/draw.c \
 	src/draw/put_pixel.c \
-	src/include/fdf.h \
 	src/parse/fill_points.c \
 	src/parse/init_map.c \
 	src/parse/parse.c

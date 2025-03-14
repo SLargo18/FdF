@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:51:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 06:36:57 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 06:58:02 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	apply_isometric (t_point *p, t_fdf *fdf)
 	int	x;
 	int	y;
 
+	fdf->angle = 0.8;
 	x = p->x;
 	y = p->y;
 	p->x = (x - y) * cos(fdf->angle);
