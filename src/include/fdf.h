@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 08:52:07 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:04:56 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "../../minilibx-linux/mlx.h"
 # include <stdio.h>
 
-# define WW 500
-# define WH 500
+# define WW 1800
+# define WH 1800
 
 
 typedef struct point
@@ -78,4 +78,5 @@ t_map	*parse(char *file, int fd, char *line);
 void	draw_map(t_fdf *fdf);
 void	put_pixel(t_fdf *fdf, int x, int y, int color);
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2);
+int		get_color(t_point p1, t_point p2, float ratio);
 #endif

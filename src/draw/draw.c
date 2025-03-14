@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:51:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 08:47:44 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:39:53 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	apply_scale(t_point *p, t_fdf *fdf)
 {
 	p->x *= fdf->scale;
 	p->y *= fdf->scale;
-	p->z -= fdf->scale * fdf->z_scale;
+	p->z += fdf->scale;
 }
 
 static t_point	project_point(t_point p, t_fdf *fdf)
@@ -100,7 +100,7 @@ void	draw_map(t_fdf *fdf)
 	if (!fdf->img)
 		return ;
 	if (!fdf->scale)
-		fdf->scale = 10;
+		fdf->scale = 30;
 	if (!fdf->angle)
 		fdf->angle = 0.8;
 	if ((!fdf->z_scale) == 0)

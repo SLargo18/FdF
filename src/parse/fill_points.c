@@ -39,7 +39,7 @@ void	fill_points(char *txt, t_map *map)
 			map->grid[row][col].x = col;
 			map->grid[row][col].y = row;
 			map->grid[row][col].z = ft_atoi(split[col]);
-			map->grid[row][col].color = 0xAAFFFF;
+			map->grid[row][col].color = 0x00FFFFFF;
 			col++;
 		}
 		free_split(split, col);

@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 05:15:15 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 08:58:25 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:21:10 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 	}
 	pixel = mlx_get_data_addr(fdf->img, &bits_per_pixel, &size_line, &endian);
 	if (!pixel)
-	printf("pixel is null\n");
 		return ;
 	pixel += (y * size_line + x * (bits_per_pixel / 8));
-	printf("color: %x\n", color);
 	*(unsigned int *)pixel = color;
+	printf("color: %i\n", color);
 }
+
