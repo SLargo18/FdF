@@ -15,12 +15,12 @@
 
 static int	get_color_hex(char *str)
 {
-	int color;
-	char *ptr_hex;
+	int		color;
+	char	*ptr_hex;
 
 	color = 0x00FFFFFF;
 	ptr_hex = ft_strchr(str, ',');
-	if(ptr_hex)
+	if (ptr_hex)
 	{
 		ptr_hex++;
 		if (*ptr_hex == '0' && (*(ptr_hex + 1) == 'x' || *(ptr_hex + 1) == 'X'))
@@ -28,7 +28,7 @@ static int	get_color_hex(char *str)
 		color = 0;
 		while (*ptr_hex && *ptr_hex != '\n')
 		{
-			color = color * 16,
+			color = color * 16;
 			if (*ptr_hex >= '0' && *ptr_hex <= '9')
 				color += *ptr_hex - '0';
 			else if (*ptr_hex >= 'a' && *ptr_hex <= 'f')
@@ -36,7 +36,7 @@ static int	get_color_hex(char *str)
 			else if (*ptr_hex >= 'A' && *ptr_hex <= 'F')
 				color += *ptr_hex - 'A' + 10;
 			ptr_hex++;
-		} 
+		}
 	}
 	return (color);
 }

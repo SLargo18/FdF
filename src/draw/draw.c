@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:51:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 16:39:53 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/15 21:30:25 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,10 @@ void	draw_map(t_fdf *fdf)
 		mlx_destroy_image(fdf->mlx, fdf->img);
 		fdf->img = NULL;
 	}
-	fdf->img = mlx_new_image(fdf->mlx, WW, WH);
-	if (!fdf->img)
-		return ;
 	if (!fdf->scale)
-		fdf->scale = 30;
+		fdf->scale = 3;
 	if (!fdf->angle)
 		fdf->angle = 0.8;
-	if ((!fdf->z_scale) == 0)
-		fdf->z_scale = 1;
 	connect_point(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
 	display_instructions(fdf);
 }

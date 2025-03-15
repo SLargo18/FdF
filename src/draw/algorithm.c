@@ -21,7 +21,7 @@ static int	abs_value(int num)
 	if (num < 0)
 		return (-num);
 	return (num);
-} /*creo que puedo usar abs de math.h*/
+}
 
 static void	set_params(t_point p1, t_point p2, int *params)
 {
@@ -65,12 +65,11 @@ void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 	current = p1;
 	step = 0;
 	distance = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
-	printf("distance: %f\n", distance);
 	while (current.x != p2.x || current.y != p2.y)
 	{
 		if (current.x >= 0 && current.x < WW && current.y >= 0
 			&& current.y < WH)
-			put_pixel(fdf, current.x, current.y, 
+			mlx_pixel_put(fdf->mlx, fdf->win, current.x, current.y,
 				get_color(p1, p2, step / distance));
 		e2 = 2 * params[4];
 		if (e2 > -params[1])
