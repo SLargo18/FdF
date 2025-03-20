@@ -6,54 +6,16 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:51:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/15 21:30:25 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:42:25 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void	apply_shift(t_point *p, t_fdf *fdf)
-{
-	p->x += fdf->shift_x + WW / 2;
-	p->y += fdf->shift_y + WH / 3;
-}
-
-static void	apply_isometric(t_point *p, t_fdf *fdf)
-{
-	int	x;
-	int	y;
-
-	x = p->x;
-	y = p->y;
-	p->x = (x - y) * cos(fdf->angle);
-	p->y = (x + y) * sin(fdf->angle) - p->z;
-
-}
-
-static void	apply_scale(t_point *p, t_fdf *fdf)
-{
-	p->x *= fdf->scale;
-	p->y *= fdf->scale;
-	p->z += fdf->scale;
-}
-
-static t_point	project_point(t_point p, t_fdf *fdf)
-{
-	t_point	projected;
-
-	projected = p;
-	apply_scale(&projected, fdf);
-	apply_isometric(&projected, fdf);
-	apply_shift(&projected, fdf);
-	return (projected);
-}
-
-static void	connect_point(t_fdf *fdf)
+static void	connect_point(t_fdf *fdf, t_point p1, t_point p2)
 {
 	int		i;
 	int		j;
-	t_point	p1;
-	t_point	p2;
 
 	i = 0;
 	while (i < fdf->map->row)
@@ -100,6 +62,6 @@ void	draw_map(t_fdf *fdf)
 		fdf->scale = 3;
 	if (!fdf->angle)
 		fdf->angle = 0.8;
-	connect_point(fdf);
+	connect_point(fdf, fdf->map->grid[0][0], fdf->map->grid[0][0]);
 	display_instructions(fdf);
 }

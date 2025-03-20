@@ -72,9 +72,10 @@ void	fill_points(char *txt, t_map *map)
 		while (col < map->col && split[col])
 		{
 			set_point(map, row, col, split[col]);
+			free(split[col]);
 			col++;
 		}
-		free_split(split, col);
+		free(split);
 		row++;
 	}
 	close(fd);
