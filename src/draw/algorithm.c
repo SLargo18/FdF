@@ -15,18 +15,10 @@
 
 #include "../include/fdf.h"
 
-
-static int	abs_value(int num)
-{
-	if (num < 0)
-		return (-num);
-	return (num);
-}
-
 static void	set_params(t_point p1, t_point p2, int *params)
 {
-	params[0] = abs_value(p2.x - p1.x);
-	params[1] = abs_value(p2.y - p1.y);
+	params[0] = abs(p2.x - p1.x);
+	params[1] = abs(p2.y - p1.y);
 	if (p1.x < p2.x)
 		params[2] = 1;
 	else
@@ -69,7 +61,7 @@ void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 		if (current.x >= 0 && current.x < WW && current.y >= 0
 			&& current.y < WH)
 			mlx_pixel_put(fdf->mlx, fdf->win, current.x, current.y,
-				get_color(p1, p2, step / distance));
+				get_color_(p1, p2, step / distance));
 		e2 = 2 * params[4];
 		if (e2 > -params[1])
 		{
