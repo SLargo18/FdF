@@ -38,21 +38,6 @@ static int	parse_hex_color(char *ptr_hex)
 	}
 	return (color);
 }
-int	no_color(char *str, int z)
-{
-	int	color;
-	char	*ptr_hex;
-
-	ptr_hex = ft_strchr(str, ',');
-	if (!ptr_hex)
-	{
-		ptr_hex = 0x00FFFFFF;
-		while (ptr_hex)
-		{
-			ptr_hex++;
-		}
-	}
-}
 
 int	get_color_hex(char *str, int z)
 {

@@ -44,6 +44,20 @@ int	get_color(t_point p1, t_point p2, float ratio)
 	return (color);
 }
 
+static void	update_position(t_point current, int *params, int e2)
+{
+	if (e2 > -params[1])
+	{
+		params[4] -= params[1];
+		current.x += params[2];
+	}
+	if (e2 < params[0])
+	{
+		params[4] += params[0];
+		current.y += params[3];
+	}
+}
+
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 {
 	int		params[5];
@@ -61,18 +75,9 @@ void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 		if (current.x >= 0 && current.x < WW && current.y >= 0
 			&& current.y < WH)
 			mlx_pixel_put(fdf->mlx, fdf->win, current.x, current.y,
-				get_color_(p1, p2, step / distance));
+				get_color(p1, p2, step / distance));
 		e2 = 2 * params[4];
-		if (e2 > -params[1])
-		{
-			params[4] -= params[1];
-			current.x += params[2];
-		}
-		if (e2 < params[0])
-		{
-			params[4] += params[0];
-			current.y += params[3];
-		}
+		update_position(&current, params, e2);
 		step++;
 	}
 }
