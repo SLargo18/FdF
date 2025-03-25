@@ -33,11 +33,10 @@ static void	set_params(t_point p1, t_point p2, int *params)
 
 int	get_color(t_point p1, t_point p2, float ratio)
 {
-	if (p1.color == 0 || p2.color == 0)
-	{
-		get_color_hex() 
-		return (base_color);
-	}
+	if (p1.color == 0)
+		return (0x0000FF00);
+	if (p2.color == 0)
+		return (0x00FF0000);
 	if (p1.color == p2.color)
 		return (p1.color);
 
@@ -76,11 +75,11 @@ static void	update_position(t_point *current, int *params, int e2)
 
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 {
-	int params[5];
-	int e2;
+	int     params[5];
+	int     e2;
 	t_point current;
-	float distance;
-	float step;
+	float   distance;
+	float   step;
 
 	set_params(p1, p2, params);
 	current = p1;

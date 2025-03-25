@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/25 19:21:54 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/25 22:00:21 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	free_map(t_map *map)
 
 static void	init_fdf(t_fdf *fdf)
 {
-	fdf->scale = 10;
-	fdf->shift_x = 30;
-	fdf->shift_y = 30;
-	fdf->z_scale = 3;
+	fdf->scale = 1;
+	fdf->shift_x = (30);
+	fdf->shift_y = (30);
+	fdf->z_scale = 1;
 	fdf->angle = 0.8;
 }
 
@@ -71,10 +71,10 @@ static int	mouse_hook(int button, int x, int y, t_fdf *fdf)
 {
 	(void)x;
 	(void)y;
-	if (button == 4)
-		fdf->scale += (fdf->scale * 0.1);
-	else if (button == 5)
-		fdf->scale -= (fdf->scale * 0.1);
+	if (button == 4 && fdf->scale < 120)
+		fdf->scale += (fdf->scale * 5);
+	else if (button == 5 && fdf->scale > 1)
+		fdf->scale -= (fdf->scale * 0.2);
 	if (fdf->scale < 1)
 		fdf->scale = 1;
 	mlx_clear_window(fdf->mlx, fdf->win);
