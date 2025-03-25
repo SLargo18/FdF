@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+      
+/*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2025/03/07 23:58:09 by slargo-b          #+#    #+#             */
 /*   Updated: 2025/03/07 23:58:09 by slargo-b         ###   ########.fr       */
@@ -14,6 +14,7 @@
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
 
 static void	set_params(t_point p1, t_point p2, int *params)
 {
@@ -32,16 +33,31 @@ static void	set_params(t_point p1, t_point p2, int *params)
 
 int	get_color(t_point p1, t_point p2, float ratio)
 {
-	int		color;
-
+	if (p1.color == 0 || p2.color == 0)
+	{
+		get_color_hex() 
+		return (base_color);
+	}
 	if (p1.color == p2.color)
 		return (p1.color);
+
 	if (ratio < 0)
 		ratio = 0;
 	if (ratio > 1)
 		ratio = 1;
-	color = p1.color + ((p2.color - p1.color) * ratio);
-	return (color);
+	int r1 = (p1.color >> 16) & 0xFF;
+	int g1 = (p1.color >> 8) & 0xFF;
+	int b1 = p1.color & 0xFF;
+
+	int r2 = (p2.color >> 16) & 0xFF;
+	int g2 = (p2.color >> 8) & 0xFF;
+	int b2 = p2.color & 0xFF;
+
+	int r = r1 + (r2 - r1) * ratio;
+	int g = g1 + (g2 - g1) * ratio;
+	int b = b1 + (b2 - b1) * ratio;
+
+	return ((r << 16) | (g << 8) | b);
 }
 
 static void	update_position(t_point *current, int *params, int e2)
@@ -60,11 +76,11 @@ static void	update_position(t_point *current, int *params, int e2)
 
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 {
-	int		params[5];
-	int		e2;
-	t_point	current;
-	float	distance;
-	float	step;
+	int params[5];
+	int e2;
+	t_point current;
+	float distance;
+	float step;
 
 	set_params(p1, p2, params);
 	current = p1;
