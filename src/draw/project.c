@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 16:29:39 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/20 16:30:56 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:37:14 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	apply_isometric(t_point *p, t_fdf *fdf)
 	x = p->x;
 	y = p->y;
 	p->x = (x - y) * cos(fdf->angle);
-	p->y = (x + y) * sin(fdf->angle) - p->z;
+	p->y = (x + y) * sin(fdf->angle) - p->z * fdf->z_scale;
 
 }
 
@@ -34,7 +34,7 @@ static void	apply_scale(t_point *p, t_fdf *fdf)
 {
 	p->x *= fdf->scale;
 	p->y *= fdf->scale;
-	p->z += fdf->scale;
+	p->z += fdf->z_scale;
 }
 
 t_point	project_point(t_point p, t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/21 22:39:31 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:21:54 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,13 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-static void	reset_view(t_fdf *fdf)
+static void	init_fdf(t_fdf *fdf)
 {
 	fdf->scale = 10;
 	fdf->shift_x = 30;
 	fdf->shift_y = 30;
 	fdf->z_scale = 3;
 	fdf->angle = 0.8;
-}
-
-static void	init_fdf(t_fdf *fdf)
-{
-	fdf->map = map;
-	fdf->mlx = mlx_init();
-	reset_view(fdf);
 }
 
 static int	key_hook(int keycode, t_fdf *fdf)
@@ -63,12 +56,12 @@ static int	key_hook(int keycode, t_fdf *fdf)
 		fdf->angle += 0.1;
 	else if (keycode == 101)
 		fdf->angle -= 0.1;
-	else if (keycode = 122)
+	else if (keycode == 122)
 		fdf->z_scale += 0.5;
-	else if (keycode = 120)
+	else if (keycode == 120)
 		fdf->z_scale -= 0.5;
 	else if (keycode == 114)
-		reset_view(fdf);
+		init_fdf(fdf);
 	mlx_clear_window(fdf->mlx, fdf->win);
 	draw_map(fdf);
 	return (0);
@@ -102,11 +95,11 @@ int	main(int argc, char *argv[])
 	t_map	*map;
 	t_fdf	*fdf;
 
-	if (argc != 2 && argv[] != .fdf)
+	if (argc != 2)
 		return (write(1, "Error\n", 6), (1));
 	map = parse(argv[1], 0, NULL);
 	if (!map)
-		return(write(1, "Error\n", 6),(1));
+		return (write(1, "Error\n", 6),(1));
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
 		return (free_map(map), (1));
@@ -118,7 +111,7 @@ int	main(int argc, char *argv[])
 	if (!fdf->win)
 		return (free_map(map), free(fdf), (1));
 	fdf->img = NULL;
-	init_fdf(fdf, map);
+	init_fdf(fdf);
 	draw_map(fdf);
 	mlx_hook(fdf->win, 2, 1L << 0, key_hook, fdf);
 	mlx_hook(fdf->win, 17, 0, close_win, fdf);

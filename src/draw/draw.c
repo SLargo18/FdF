@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:51:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/21 23:05:42 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:40:05 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	display_instructions(t_fdf *fdf)
 {
 	mlx_string_put(fdf->mlx, fdf->win, 10, 10, 0xFFFFFF, "Flechas: Mover");
-	mlx_string_put(fdf->mlx, fdf->win, 10, 30, 0xFFFFFF, "raton: Zoom");
+	mlx_string_put(fdf->mlx, fdf->win, 10, 30, 0xFFFFFF, "Raton: Zoom");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 50, 0xFFFFFF, "Q/E: Rotar");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 70, 0xFFFFFF, "Z/X: Ajustar altura");
 	mlx_string_put(fdf->mlx, fdf->win, 10, 90, 0xFFFFFF, "R: Reiniciar");
@@ -58,10 +58,6 @@ void	draw_map(t_fdf *fdf)
 		mlx_destroy_image(fdf->mlx, fdf->img);
 		fdf->img = NULL;
 	}
-	if (!fdf->scale)
-		fdf->scale = 3;
-	if (!fdf->angle)
-		fdf->angle = 0.8;
-	connect_point(fdf, fdf->map->grid[0][0], fdf->map->grid[0][0]);
+	connect_point(fdf, fdf->map->grid[5][5], fdf->map->grid[100][10]);
 	display_instructions(fdf);
 }

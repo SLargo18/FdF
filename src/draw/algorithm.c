@@ -44,7 +44,7 @@ int	get_color(t_point p1, t_point p2, float ratio)
 	return (color);
 }
 
-static void	update_position(t_point current, int *params, int e2)
+static void	update_position(t_point *current, int *params, int e2)
 {
 	if (e2 > -params[1])
 	{
