@@ -49,12 +49,12 @@ static void	update_position(t_point current, int *params, int e2)
 	if (e2 > -params[1])
 	{
 		params[4] -= params[1];
-		current.x += params[2];
+		current->x += params[2];
 	}
 	if (e2 < params[0])
 	{
 		params[4] += params[0];
-		current.y += params[3];
+		current->y += params[3];
 	}
 }
 
