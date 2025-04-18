@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:42:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/18 17:31:41 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:36:10 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ int	count_lines(int fd)
 	char	*line;
 
 	i = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		i++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	return (i);
 }
