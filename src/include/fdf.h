@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/18 16:03:28 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:23:45 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		ft_atoi(const char *str);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strrchr(const char *s, int c);
 void	init_map(t_map *map, int row, int col);
-void	fill_points(char *txt, t_map *map);
+void	process_line(char *line, t_map *map, int row);
 void	free_map(t_map *map);
 char	*ft_strchr(const char *s, int c);
 int		ft_strlen(const char *s);
