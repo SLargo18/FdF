@@ -15,7 +15,6 @@
 
 #include "../include/fdf.h"
 
-
 static void	set_params(t_point p1, t_point p2, int *params)
 {
 	params[0] = abs(p2.x - p1.x);
@@ -39,7 +38,6 @@ int	get_color(t_point p1, t_point p2, float ratio)
 		return (0x00FF0000);
 	if (p1.color == p2.color)
 		return (p1.color);
-
 	if (ratio < 0)
 		ratio = 0;
 	if (ratio > 1)
