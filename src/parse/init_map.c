@@ -39,3 +39,22 @@ void	init_map(t_map *map, int row, int col)
 		i++;
 	}
 }
+
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	if (!map)
+		return ;
+	if (map->grid)
+	{
+		while (i < map->row)
+		{
+			free(map->grid[i]);
+			i++;
+		}
+		free(map->grid);
+	}
+	free(map);
+}

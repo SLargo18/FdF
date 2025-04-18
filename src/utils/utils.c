@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:42:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/14 17:05:24 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/04/18 15:21:45 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,30 @@ int	ft_atoi(const char *nptr)
 		nptr++;
 	}
 	return (res * sign);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
+}
+
+char	*ft_strrchr(const char *s, int c)
+{
+	char	*temp;
+
+	temp = NULL;
+	while (*s)
+	{
+		if (*s == (char)c)
+			temp = ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (temp);
 }
