@@ -6,34 +6,11 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:30:29 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/18 16:44:52 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/03/21 22:41:13 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static void	fill_points(char *txt, t_map *map)
-{
-	int		fd;
-	int		row;
-	char	*line;
-
-	row = 0;
-	line = NULL;
-	fd = open(txt, O_RDONLY);
-	if (fd < 0)
-		return ;
-	while (row < map->row)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		process_line(line, map, row);
-		free(line);
-		row++;
-	}
-	close(fd);
-}
 
 t_map	*parse(char *file, int fd, char *line)
 {

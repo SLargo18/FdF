@@ -13,6 +13,7 @@ UTILS = src/utils/get_next_line.c \
 
 OBJ = $(SRC:.c=.o) $(UTILS:.c=.o)
 
+#cc -g3 src/draw/*.c src/parse/*.c src/utils/*.c src/main.c src/events/events.c -Iminilibx-linux -Lminilibx-linux -lXext -lX11 -lm libmlx.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I include
 MLX_FLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm
