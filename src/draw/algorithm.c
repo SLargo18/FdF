@@ -15,7 +15,6 @@
 
 #include "../include/fdf.h"
 
-
 static void	set_params(t_point p1, t_point p2, int *params)
 {
 	params[0] = abs(p2.x - p1.x);
@@ -29,34 +28,6 @@ static void	set_params(t_point p1, t_point p2, int *params)
 	else
 		params[3] = -1;
 	params[4] = params[0] - params[1];
-}
-
-int	get_color(t_point p1, t_point p2, float ratio)
-{
-	if (p1.color == 0)
-		return (0x0000FF00);
-	if (p2.color == 0)
-		return (0x00FF0000);
-	if (p1.color == p2.color)
-		return (p1.color);
-
-	if (ratio < 0)
-		ratio = 0;
-	if (ratio > 1)
-		ratio = 1;
-	int r1 = (p1.color >> 16) & 0xFF;
-	int g1 = (p1.color >> 8) & 0xFF;
-	int b1 = p1.color & 0xFF;
-
-	int r2 = (p2.color >> 16) & 0xFF;
-	int g2 = (p2.color >> 8) & 0xFF;
-	int b2 = p2.color & 0xFF;
-
-	int r = r1 + (r2 - r1) * ratio;
-	int g = g1 + (g2 - g1) * ratio;
-	int b = b1 + (b2 - b1) * ratio;
-
-	return ((r << 16) | (g << 8) | b);
 }
 
 static void	update_position(t_point *current, int *params, int e2)
@@ -75,11 +46,11 @@ static void	update_position(t_point *current, int *params, int e2)
 
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 {
-	int     params[5];
-	int     e2;
-	t_point current;
-	float   distance;
-	float   step;
+	int		params[5];
+	int		e2;
+	t_point	current;
+	float	distance;
+	float	step;
 
 	set_params(p1, p2, params);
 	current = p1;

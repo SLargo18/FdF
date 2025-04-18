@@ -79,7 +79,7 @@ static void	set_point(t_map *map, int row, int col, char *value)
 	map->grid[row][col].color = get_color_hex(value, z);
 }
 
-static void	process_line(char *line, t_map *map, int row)
+void	process_line(char *line, t_map *map, int row)
 {
 	char	**split;
 	int		col;
@@ -100,27 +100,4 @@ static void	process_line(char *line, t_map *map, int row)
 		col++;
 	}
 	free(split);
-}
-
-void	fill_points(char *txt, t_map *map)
-{
-	int		fd;
-	int		row;
-	char	*line;
-
-	row = 0;
-	line = NULL;
-	fd = open(txt, O_RDONLY);
-	if (fd < 0)
-		return ;
-	while (row < map->row)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		process_line(line, map, row);
-		free(line);
-		row++;
-	}
-	close(fd);
 }
