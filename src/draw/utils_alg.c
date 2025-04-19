@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:42:29 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/18 15:55:14 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/04/19 21:58:40 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_color(t_point p1, t_point p2, float ratio)
 	int	g;
 	int	b;
 
-	if (check_color(p1, p2, ratio) != -1)
+	if (check_color(p1, p2, ratio) != 0)
 	{
 		if (p1.color == 0)
 			return (0x0000FF00);

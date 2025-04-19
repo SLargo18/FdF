@@ -5,78 +5,73 @@
 #                                                     +:+ +:+         +:+      #
 #    By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/18 17:42:27 by slargo-b          #+#    #+#              #
-#    Updated: 2025/04/18 17:42:27 by slargo-b         ###   ########.fr        #
+#    Created: 2025/04/19 21:34:51 by slargo-b          #+#    #+#              #
+#    Updated: 2025/04/19 21:34:51 by slargo-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/18 17:38:44 by slargo-b          #+#    #+#              #
-#    Updated: 2025/04/18 17:38:44 by slargo-b         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = fdf
 
-NAME		= fdf
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g3
-MLX_FLAGS	= -lmlx -lXext -lX11 -lm
+SRC_DIR = src
+DRAW_DIR = $(SRC_DIR)/draw
+EVENTS_DIR = $(SRC_DIR)/events
+PARSE_DIR = $(SRC_DIR)/parse
+UTILS_DIR = $(SRC_DIR)/utils
+INCLUDE_DIR = $(SRC_DIR)/include
 
-SRC_DIR		= src/
-OBJ_DIR		= obj/
+SRC_FILES = $(SRC_DIR)/main.c
+DRAW_FILES = $(DRAW_DIR)/algorithm.c $(DRAW_DIR)/draw.c $(DRAW_DIR)/project.c $(DRAW_DIR)/utils_alg.c
+EVENTS_FILES = $(EVENTS_DIR)/events.c
+PARSE_FILES = $(PARSE_DIR)/fill_points.c $(PARSE_DIR)/init_map.c $(PARSE_DIR)/parse.c
+UTILS_FILES = $(UTILS_DIR)/ft_split.c $(UTILS_DIR)/get_next_line.c $(UTILS_DIR)/get_next_line_utils.c $(UTILS_DIR)/utils.c
 
-SRC_FILES	= main.c \
-			  draw/algorithm.c \
-			  draw/draw.c \
-			  draw/project.c \
-			  draw/utils_alg.c \
-			  events/events.c \
-			  parse/fill_points.c \
-			  parse/init_map.c \
-			  parse/parse.c \
-			  utils/ft_split.c \
-			  utils/get_next_line.c \
-			  utils/get_next_line_utils.c \
-			  utils/utils.c
+SRCS = $(SRC_FILES) $(DRAW_FILES) $(EVENTS_FILES) $(PARSE_FILES) $(UTILS_FILES)
 
-SRC			= $(addprefix $(SRC_DIR), $(SRC_FILES))
-OBJ			= $(addprefix $(OBJ_DIR), $(SRC_FILES:.c=.o))
+OBJ_DIR = obj
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-OBJ_DIRS	= $(sort $(dir $(OBJ)))
+MLX_DIR = minilibx-linux
+MLX = $(MLX_DIR)/libmlx.a
 
-MLX_PATH	= minilibx-linux/
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE_DIR) -I$(MLX_DIR)
+LDFLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+RESET = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@echo "\033[33mCompilando MiniLibX...\033[0m"
-	@make -C $(MLX_PATH) > /dev/null 2>&1
-	@echo "\033[32mMiniLibX compilado con éxito\033[0m"
-	@echo "\033[33mCompilando FdF...\033[0m"
-	$(CC) $(CFLAGS) -o $@ $^ -L$(MLX_PATH) $(MLX_FLAGS)
-	@echo "\033[32mFdF compilado con éxito\033[0m"
+$(NAME): $(MLX) $(OBJ_DIR) $(OBJS)
+	@$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+	@echo "$(GREEN)FdF compiled successfully!$(RESET)"
 
-$(OBJ_DIRS):
-	@mkdir -p $@
+$(MLX):
+	@echo "$(YELLOW)Compiling MiniLibX...$(RESET)"
+	@make -C $(MLX_DIR)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIRS)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)/draw
+	@mkdir -p $(OBJ_DIR)/events
+	@mkdir -p $(OBJ_DIR)/parse
+	@mkdir -p $(OBJ_DIR)/utils
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(GREEN)Compiling:$(RESET) $<"
 
 clean:
-	@echo "\033[33mLimpiando archivos objeto...\033[0m"
+	@echo "$(YELLOW)Cleaning object files...$(RESET)"
 	@rm -rf $(OBJ_DIR)
-	@make -C $(MLX_PATH) clean > /dev/null 2>&1
-	@echo "\033[32mArchivos objeto eliminados\033[0m"
+	@make -C $(MLX_DIR) clean
 
 fclean: clean
-	@echo "\033[33mLimpiando ejecutable...\033[0m"
+	@echo "$(RED)Removing executable and libraries...$(RESET)"
 	@rm -f $(NAME)
-	@echo "\033[32mEjecutable eliminado\033[0m"
 
 re: fclean all
 

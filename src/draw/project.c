@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 16:29:39 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/18 12:37:42 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/04/19 22:19:03 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	apply_scale(t_point *p, t_fdf *fdf)
 {
 	p->x *= fdf->scale;
 	p->y *= fdf->scale;
-	p->z += fdf->z_scale;
+	p->z += fdf->scale;
 }
 
 t_point	project_point(t_point p, t_fdf *fdf)
