@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/18 17:56:52 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/04/23 18:41:57 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_fdf	*start(t_map *map)
 
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
-		return (free_map(map), NULL);
+		return (free_map(map), free(fdf), NULL);
 	fdf->map = map;
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)
@@ -71,7 +71,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2 || !checker_map(argv))
 		return (write(1, "Error\n", 6), (1));
-	map = parse(argv[1], 0, NULL);
+	map = parse(argv[1]);
 	if (!map)
 		return (write(1, "Error\n", 6), (1));
 	fdf = start(map);
