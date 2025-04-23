@@ -77,7 +77,7 @@ void	free_map(t_map *map);
 char	*ft_strchr(const char *s, int c);
 int		ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);
-t_map	*parse(char *file, int fd, char *line);
+t_map	*parse(char *file);
 void	draw_map(t_fdf *fdf);
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2);
 int		get_color_hex(char *str, int z);
