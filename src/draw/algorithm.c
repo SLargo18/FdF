@@ -54,7 +54,6 @@ void	draw_line(t_fdf *fdf, t_point p1, t_point p2)
 
 	set_params(p1, p2, params);
 	current = p1;
-
 	distance = sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
 	while (current.x != p2.x || current.y != p2.y)
 	{

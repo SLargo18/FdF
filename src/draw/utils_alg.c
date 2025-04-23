@@ -21,17 +21,19 @@ static void	get_rgb_values(t_point *point)
 
 static int	check_color(t_point p1, t_point p2, float ratio)
 {
+	if (p1.color == 0 && p2.color == 0)
+		return (0xFFFFFF);
 	if (p1.color == 0)
-		return (0x0000FF00);
+		return (p2.color);
 	if (p2.color == 0)
-		return (0x00FF0000);
+		return (p1.color);
 	if (p1.color == p2.color)
 		return (p1.color);
 	if (ratio < 0)
 		ratio = 0;
 	if (ratio > 1)
 		ratio = 1;
-	return (-1);
+	return (0);
 }
 
 int	get_color(t_point p1, t_point p2, float ratio)
@@ -40,12 +42,12 @@ int	get_color(t_point p1, t_point p2, float ratio)
 	int	g;
 	int	b;
 
-	if (check_color(p1, p2, ratio) != 0)
+	if (check_color(p1, p2, ratio) != -1)
 	{
 		if (p1.color == 0)
-			return (0x0000FF00);
+			return (p2.color);
 		if (p2.color == 0)
-			return (0x00FF0000);
+			return (p1.color);
 		return (p1.color);
 	}
 	get_rgb_values(&p1);

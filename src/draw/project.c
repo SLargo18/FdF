@@ -20,13 +20,18 @@ static void	apply_shift(t_point *p, t_fdf *fdf)
 
 static void	apply_isometric(t_point *p, t_fdf *fdf)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	int		center_x;
+	int		center_y;
 
-	x = p->x;
-	y = p->y;
-	p->x = (x - y) * cos(fdf->angle);
-	p->y = (x + y) * sin(fdf->angle) - p->z * fdf->z_scale;
+	center_x = fdf->map->col / 2;
+	center_y = fdf->map->row / 2;
+	x = p->x - center_x;
+	y = p->y - center_y;
+	p->x = x * cos(fdf->angle) - y * sin(fdf->angle);
+	p->y = x * sin(fdf->angle) + y * cos(fdf->angle);
+	p->y -= p->z * fdf->z_scale;
 }
 
 static void	apply_scale(t_point *p, t_fdf *fdf)

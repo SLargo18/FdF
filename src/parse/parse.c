@@ -35,6 +35,40 @@ static void	fill_points(char *txt, t_map *map)
 	close(fd);
 }
 
+static int	validate_line_columns(char *line, int expected_columns)
+{
+	int	columns;
+
+	columns = count_row(line);
+	if (columns != expected_columns)
+		return (0);
+	return (1);
+}
+
+static int	validate_file_columns(char *file, int expected_columns)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!validate_line_columns(line, expected_columns))
+		{
+			free(line);
+			close(fd);
+			return (0);
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (1);
+}
+
 t_map	*parse(char *file, int fd, char *line)
 {
 	t_map	*map;
@@ -44,7 +78,7 @@ t_map	*parse(char *file, int fd, char *line)
 		return (NULL);
 	map = malloc(sizeof(t_map));
 	if (!map)
-		return ((close (fd), NULL));
+		return (close(fd), NULL);
 	map->row = count_lines(fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
@@ -52,10 +86,11 @@ t_map	*parse(char *file, int fd, char *line)
 		return (free_map(map), NULL);
 	line = get_next_line(fd);
 	if (!line)
-		return (free_map(map), NULL);
+		return (close(fd), free_map(map), NULL);
 	map->col = count_row(line);
 	free(line);
-	close(fd);
+	if (!validate_file_columns(file, map->col))
+		return (free_map(map), NULL);
 	init_map(map, map->row, map->col);
 	if (!map->grid)
 		return (free_map(map), NULL);
