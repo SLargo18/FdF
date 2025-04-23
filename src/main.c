@@ -6,17 +6,24 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/23 18:41:57 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:00:48 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/fdf.h"
 
-static int	close_win(t_fdf *fdf)
+int	close_win(t_fdf *fdf)
 {
 	mlx_destroy_window(fdf->mlx, fdf->win);
+	if (fdf->img)
+	{
+		mlx_destroy_image(fdf->mlx, fdf->img);
+		fdf->img = NULL;
+	}
+	mlx_destroy_display(fdf->mlx);
 	free_map(fdf->map);
-	free(fdf);
+	free (fdf->mlx);
+	free (fdf);
 	exit(0);
 }
 
