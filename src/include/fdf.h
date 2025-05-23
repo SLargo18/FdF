@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/04/23 18:55:03 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:34:21 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ t_point	project_point(t_point p, t_fdf *fdf);
 int		key_hook(int keycode, t_fdf *fdf);
 int		mouse_hook(int button, int x, int y, t_fdf *fdf);
 void	init_fdf(t_fdf *fdf);
-int	close_win(t_fdf *fdf);
+int		close_win(t_fdf *fdf);
 #endif
