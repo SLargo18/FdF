@@ -6,7 +6,11 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/04/18 17:23:45 by slargo-b         ###   ########.fr       */
+=======
+/*   Updated: 2025/05/27 12:00:36 by slargo-b         ###   ########.fr       */
+>>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../../minilibx-linux/mlx.h"
+//# include "../../minilibx-linux/mlx.h"
 # include <stdio.h>
 
 # define WW 1800
@@ -77,7 +81,7 @@ void	free_map(t_map *map);
 char	*ft_strchr(const char *s, int c);
 int		ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);
-t_map	*parse(char *file, int fd, char *line);
+t_map	*parse(char *file);
 void	draw_map(t_fdf *fdf);
 void	draw_line(t_fdf *fdf, t_point p1, t_point p2);
 int		get_color_hex(char *str, int z);
@@ -86,4 +90,8 @@ t_point	project_point(t_point p, t_fdf *fdf);
 int		key_hook(int keycode, t_fdf *fdf);
 int		mouse_hook(int button, int x, int y, t_fdf *fdf);
 void	init_fdf(t_fdf *fdf);
+<<<<<<< HEAD
+=======
+int		close_win(t_fdf *fdf);
+>>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 #endif
