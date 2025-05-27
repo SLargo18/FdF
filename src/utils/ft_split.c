@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:15:56 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/05/27 14:09:28 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:43:32 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	count_words(const char *s, char c)
 {
 	size_t	count;
 	int		inside_word;
-	int     i;
+	int		i;
 
 	count = 0;
 	i = 0;
