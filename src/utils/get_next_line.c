@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 16:14:17 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/08 05:47:06 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:36:27 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,18 @@ static char	*update_save(char *save)
 
 	i = 0;
 	j = 0;
-	while (save[i] && (save [i] != '\n'))
+	while (save[i] && (save[i] != '\n'))
 		i++;
 	if (!save[i])
+		return (free(save), NULL);
+	if (!save[i + 1])
 		return (free(save), NULL);
 	new_save = ft_calloc(((ft_strlen(save) - i) + 1), sizeof(char));
 	if (!new_save)
 		return (free(save), NULL);
 	i++;
 	while (save[i])
-		new_save[j++] = save [i++];
+		new_save[j++] = save[i++];
 	free(save);
 	return (new_save);
 }
