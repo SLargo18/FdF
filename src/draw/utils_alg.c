@@ -6,11 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 15:42:29 by slargo-b          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/04/18 15:55:14 by slargo-b         ###   ########.fr       */
-=======
 /*   Updated: 2025/04/19 21:58:40 by slargo-b         ###   ########.fr       */
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +21,19 @@ static void	get_rgb_values(t_point *point)
 
 static int	check_color(t_point p1, t_point p2, float ratio)
 {
-<<<<<<< HEAD
-	if (p1.color == 0)
-		return (0x0000FF00);
-	if (p2.color == 0)
-		return (0x00FF0000);
-=======
 	if (p1.color == 0 && p2.color == 0)
 		return (0xFFFFFF);
 	if (p1.color == 0)
 		return (p2.color);
 	if (p2.color == 0)
 		return (p1.color);
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 	if (p1.color == p2.color)
 		return (p1.color);
 	if (ratio < 0)
 		ratio = 0;
 	if (ratio > 1)
 		ratio = 1;
-<<<<<<< HEAD
-	return (-1);
-=======
 	return (0);
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 }
 
 int	get_color(t_point p1, t_point p2, float ratio)
@@ -60,15 +45,9 @@ int	get_color(t_point p1, t_point p2, float ratio)
 	if (check_color(p1, p2, ratio) != -1)
 	{
 		if (p1.color == 0)
-<<<<<<< HEAD
-			return (0x0000FF00);
-		if (p2.color == 0)
-			return (0x00FF0000);
-=======
 			return (p2.color);
 		if (p2.color == 0)
 			return (p1.color);
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 		return (p1.color);
 	}
 	get_rgb_values(&p1);

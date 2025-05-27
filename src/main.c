@@ -6,21 +6,13 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/04/18 17:56:52 by slargo-b         ###   ########.fr       */
-=======
 /*   Updated: 2025/04/23 19:00:48 by slargo-b         ###   ########.fr       */
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/fdf.h"
 
-<<<<<<< HEAD
-static int	close_win(t_fdf *fdf)
-=======
 int	close_win(t_fdf *fdf)
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 {
 	mlx_destroy_window(fdf->mlx, fdf->win);
 	if (fdf->img)
@@ -67,11 +59,7 @@ static t_fdf	*start(t_map *map)
 
 	fdf = malloc(sizeof(t_fdf));
 	if (!fdf)
-<<<<<<< HEAD
-		return (free_map(map), NULL);
-=======
 		return (free_map(map), free(fdf), NULL);
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 	fdf->map = map;
 	fdf->mlx = mlx_init();
 	if (!fdf->mlx)

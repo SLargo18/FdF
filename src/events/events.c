@@ -6,11 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 14:11:49 by slargo-b          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/04/18 16:05:27 by slargo-b         ###   ########.fr       */
-=======
 /*   Updated: 2025/04/23 18:55:29 by slargo-b         ###   ########.fr       */
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +24,7 @@ void	init_fdf(t_fdf *fdf)
 int	key_hook(int keycode, t_fdf *fdf)
 {
 	if (keycode == 65307)
-<<<<<<< HEAD
-		exit(0);
-=======
 		close_win(fdf);
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 	else if (keycode == 65362)
 		fdf->shift_y -= 10;
 	else if (keycode == 65364)

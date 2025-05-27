@@ -6,44 +6,13 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:30:29 by slargo-b          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/04/18 17:23:23 by slargo-b         ###   ########.fr       */
-=======
 /*   Updated: 2025/04/23 19:11:59 by slargo-b         ###   ########.fr       */
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-<<<<<<< HEAD
-static void	fill_points(char *txt, t_map *map)
-{
-	int		fd;
-	int		row;
-	char	*line;
-
-	row = 0;
-	line = NULL;
-	fd = open(txt, O_RDONLY);
-	if (fd < 0)
-		return ;
-	while (row < map->row)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		process_line(line, map, row);
-		free(line);
-		row++;
-	}
-	close(fd);
-}
-
-t_map	*parse(char *file, int fd, char *line)
-=======
 int	validate_line_columns(char *line, int expected_columns)
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 {
 	int	columns;
 

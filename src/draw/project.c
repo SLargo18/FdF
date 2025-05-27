@@ -6,11 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 16:29:39 by slargo-b          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/04/18 12:37:42 by slargo-b         ###   ########.fr       */
-=======
 /*   Updated: 2025/04/19 22:19:03 by slargo-b         ###   ########.fr       */
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +20,6 @@ static void	apply_shift(t_point *p, t_fdf *fdf)
 
 static void	apply_isometric(t_point *p, t_fdf *fdf)
 {
-<<<<<<< HEAD
-	int	x;
-	int	y;
-
-	x = p->x;
-	y = p->y;
-	p->x = (x - y) * cos(fdf->angle);
-	p->y = (x + y) * sin(fdf->angle) - p->z * fdf->z_scale;
-=======
 	int		x;
 	int		y;
 	int		center_x;
@@ -45,7 +32,6 @@ static void	apply_isometric(t_point *p, t_fdf *fdf)
 	p->x = x * cos(fdf->angle) - y * sin(fdf->angle);
 	p->y = x * sin(fdf->angle) + y * cos(fdf->angle);
 	p->y -= p->z * fdf->z_scale;
->>>>>>> db60a487ce37f0420727919ac385793c5c7227b6
 }
 
 static void	apply_scale(t_point *p, t_fdf *fdf)
