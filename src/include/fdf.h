@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/05/13 12:34:21 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:00:36 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../../minilibx-linux/mlx.h"
+//# include "../../minilibx-linux/mlx.h"
 # include <stdio.h>
 
 # define WW 1800
