@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 04:53:19 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/05/27 12:22:08 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:32:13 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,7 @@ int		key_hook(int keycode, t_fdf *fdf);
 int		mouse_hook(int button, int x, int y, t_fdf *fdf);
 void	init_fdf(t_fdf *fdf);
 int		close_win(t_fdf *fdf);
+int 	count_words(const char *s, char c);
+t_map	*prepare_map(char *file);
+
 #endif

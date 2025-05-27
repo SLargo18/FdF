@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 13:15:56 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/03/20 16:35:35 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:09:28 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,25 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (a);
 }
 
-static size_t	count_words(const char *s, char c)
+int	count_words(const char *s, char c)
 {
 	size_t	count;
 	int		inside_word;
+	int     i;
 
 	count = 0;
+	i = 0;
 	inside_word = 0;
-	while (*s)
+	while (s[i])
 	{
-		if (*s != c && !inside_word)
+		if (s[i] != c && !inside_word && s[i + 1])
 		{
 			inside_word = 1;
 			count++;
 		}
-		else if (*s == c)
+		else if (s[i] == c)
 			inside_word = 0;
-		s++;
+		i++;
 	}
 	return (count);
 }

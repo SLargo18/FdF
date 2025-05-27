@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 21:30:29 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/05/27 13:17:56 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:43:58 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	validate_line_columns(char *line, int expected_columns)
 {
 	int	columns;
 
-	columns = count_row(line);
+	columns = count_words(line, ' ');
 	if (columns != expected_columns)
 	{
 		printf("Error: son %d, y hay %d\n[%s]\n", expected_columns, columns, line);
@@ -25,15 +25,18 @@ int	validate_line_columns(char *line, int expected_columns)
 	return (1);
 }
 
-static int	validate_lines(int fd, t_map *map)
+static int	validate_lines(int fd, t_map *map, char *file)
 {
 	char	*line;
-	int line_num = 1;
+	int     line_num = 1;
 
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	line = get_next_line(fd);
 	if (!line)
-		return (0);
-	map->col = count_row(line);
+		return (printf("coldsad"), 0);
+	map->col = count_words(line, ' ');
 	while (line)
 	{
 		if (!validate_line_columns(line, map->col))
@@ -45,22 +48,27 @@ static int	validate_lines(int fd, t_map *map)
 		line = get_next_line(fd);
 		line_num++;
 	}
-	return (1);
+	close(fd);
+	return (map->col);
 }
 
-static int	prepare_map(char *file, t_map **map)
+t_map	*prepare_map(char *file)
 {
-	int	fd;
-
+	int	    fd;
+	t_map   *map;
+	
+	map = malloc(sizeof(t_map));
+	if (!map)
+		return (NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (0);
-	*map = malloc(sizeof(t_map));
-	if (!(*map))
-		return (close(fd), 0);
-	(*map)->row = count_lines(fd);
+		return (free(map), NULL);
+	map->row = count_lines(fd);
 	close(fd);
-	return (1);
+	map->col = validate_lines(fd, map, file);
+	if (!map->col)
+		return (free_map(map), NULL);
+	return (map);
 }
 
 static void	fill_points(char *txt, t_map *map)
@@ -89,14 +97,10 @@ static void	fill_points(char *txt, t_map *map)
 t_map	*parse(char *file)
 {
 	t_map	*map;
-	int		fd;
 
-	if (!prepare_map(file, &map))
+	map = prepare_map(file);
+	if (!map)
 		return (NULL);
-	fd = open(file, O_RDONLY);
-	if (fd < 0 || !validate_lines(fd, map))
-		return (close(fd), free_map(map), NULL);
-	close(fd);
 	init_map(map, map->row, map->col);
 	if (!map->grid)
 		return (free_map(map), NULL);

@@ -6,7 +6,7 @@
 /*   By: slargo-b <slargo-b@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 03:38:01 by slargo-b          #+#    #+#             */
-/*   Updated: 2025/05/27 13:16:32 by slargo-b         ###   ########.fr       */
+/*   Updated: 2025/05/27 14:37:23 by slargo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ int	main(int argc, char *argv[])
 	t_fdf	*fdf;
 
 	if (argc != 2 || !checker_map(argv))
-		return (write(1, "Error\n", 6), (1));
+		return (write(1, "Error1\n", 6), (1));
 	map = parse(argv[1]);
 	if (!map)
-		return (write(1, "Error\n", 6), (1));
+		return (write(1, "Error2\n", 6), (1));
 	fdf = start(map);
 	init_fdf(fdf);
 	draw_map(fdf);

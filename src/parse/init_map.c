@@ -20,8 +20,6 @@ void	init_map(t_map *map, int row, int col)
 	int	i;
 
 	i = 0;
-	map->row = row;
-	map->col = col;
 	map->grid = malloc(sizeof(t_point *) * row);
 	if (!map->grid)
 	{
@@ -36,7 +34,6 @@ void	init_map(t_map *map, int row, int col)
 			while (--i >= 0)
 				free(map->grid[i]);
 			free(map->grid);
-			map->grid = NULL;
 			return ;
 		}
 		i++;
@@ -59,5 +56,7 @@ void	free_map(t_map *map)
 		}
 		free(map->grid);
 	}
+	map->col = 0;
+	map->row = 0;
 	free(map);
 }
