@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 NAME		= fdf
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g3
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
 MLX_FLAGS	= -lmlx -lXext -lX11 -lm
 
 SRC_DIR = src
